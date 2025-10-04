@@ -221,11 +221,12 @@
 
             window.print();
         }
-
-        document.getElementById('makeBtn').onclick = buildLetter;
-        document.getElementById('copyBtn').onclick = copyLetter;
-        document.getElementById('printBtn').onclick = printLetter;
         
+        document.addEventListener("DOMContentLoaded", () => {
+            document.getElementById('makeBtn').onclick = buildLetter;
+            document.getElementById('copyBtn').onclick = copyLetter;
+            document.getElementById('printBtn').onclick = printLetter;
+        });
         
     </script>
 </body>
