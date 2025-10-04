@@ -214,14 +214,41 @@
                 });
         }
 
-        function printLetter() {
-            if (!document.getElementById("letter").textContent.trim())
-            alert("먼저 편지를 만들어주세요!")
-            return;
+        // function printLetter() {
+        //     if (!document.getElementById("letter").textContent.trim())
+        //     alert("먼저 편지를 만들어주세요!")
+        //     return;
 
-            window.print();
+        //     window.print();
+        // }
+
+        function printLetter() {
+            const text = document.getElementById("letter").textContent;
+            if (!text.trim()) {
+                alert("먼저 편지를 만들어주세요!");
+                return;
+            }
+
+            // 새 창 열기
+            const newWin = window.open("", "", "width=800,height=600");
+            newWin.document.write(`
+                <html>
+                <head>
+                    <title>인쇄 미리보기</title>
+                </head>
+                <body>
+                    <pre style="white-space: pre-wrap; font-size:16px;">${text}</pre>
+                    <script>
+                    window.onload = function(){
+                        window.print();
+                    }
+                    <\/script>
+                </body>
+                </html>
+            `);
+            newWin.document.close();
         }
-        
+
         document.addEventListener("DOMContentLoaded", () => {
             document.getElementById('makeBtn').onclick = buildLetter;
             document.getElementById('copyBtn').onclick = copyLetter;
